@@ -1,6 +1,6 @@
 body{
     font-size: 20px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: sans-serif;
     padding: 40px;
 }
 
@@ -13,6 +13,11 @@ h2{
     font-size: 1.5em;
     padding-top: 1em;
     border-top: 1px solid rgb(232, 244, 249);
+}
+
+h3{
+    font-size: 1.3em;
+    margin-bottom: 1em;
 }
 
 form{
@@ -46,3 +51,21 @@ button:hover{
     color: black;
 }
 
+.date{
+    font-style: italic;
+}
+
+p{
+    margin-bottom: 1em;
+}
+
+#result{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 30px;
+    margin-top: 30px;
+}
+
+#result img{
+    width: 100%;
+}

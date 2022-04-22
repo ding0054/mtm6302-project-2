@@ -17,7 +17,15 @@ $btnGet.addEventListener('click', function (e) {
             console.log(data)
 
             //title, date, expl.
-            $result.innerHTML=`<img src=${data.url}>`
+            $result.innerHTML = `
+            <img src=${data.url}>
+            <div>
+            <h3>${data.title}</h3>
+            <p class="date">${data.date}</p>
+            <p>${data.explanation}</p>
+            <button>Save to Favourites</button>
+            </div>
+            `
 
         })
         .catch(error => {
