@@ -12,7 +12,7 @@ h1{
 h2{
     font-size: 1.5em;
     padding-top: 1em;
-    border-top: 1px solid rgb(232, 244, 249);
+    border-top: 2px solid rgb(112, 116, 118);
 }
 
 h3{
@@ -69,3 +69,17 @@ p{
 #result img{
     width: 100%;
 }
+
+#hdimage img{
+    width: 100%;
+    height: auto;
+    transform: translate(10%, 10%,10%);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+ .hidden{
+    
+    display: none;
+    pointer-events: none;
+    }
