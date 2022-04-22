@@ -2,8 +2,9 @@ const $btnGet = document.getElementById('btn-get')
 const $result = document.getElementById('result')
 const $date = document.getElementById('date')
 const $hdImage = document.getElementById('hdimage')
+const $favList = document.getElementById('fav_list')
+const $delete = document.getElementById('delete')
 
-window.addEventListener('DOMContentLoaded', checkLocalStorage);
 
 $btnGet.addEventListener('click', function (e) { 
     e.preventDefault()
@@ -36,6 +37,7 @@ $btnGet.addEventListener('click', function (e) {
             function removeHiddenClass(e) { 
                 e.classList.remove('hidden');
             }
+
             const $resultImage = document.getElementById('resultImage')
 
             $resultImage.addEventListener('click', function () {
@@ -49,8 +51,16 @@ $btnGet.addEventListener('click', function (e) {
 
             const $save = document.getElementById('save')
             $save.addEventListener('click', function () {
-                
-            })
+                favId++
+                let fav = {
+                    id : favId,
+                    title: data.title,
+                    date: data.date,
+                }
+                display(fav)
+                localStorage.setItem(favId, JSON.stringify(fav))
+                localStorage.setItem('favId', favId)
+            })//end save
 
         })
         .catch(error => {
@@ -59,3 +69,42 @@ $btnGet.addEventListener('click', function (e) {
     }
     
 })
+
+
+let favId = 0
+
+        function init() { 
+            if (localStorage.getItem('favId') != null) {
+                for (let i = 0; i <= localStorage.getItem('favId'); i++) {
+                    let fav = localStorage.getItem(i)
+                    if (fav != null) display(JSON.parse(fav))
+                    favId = i
+                    }
+            } else localStorage.setItem('favId', favId)
+}
+        
+// delete a favourites
+ $favList.addEventListener('click', function (e) {
+    if (e.target.classList.contains('delete')) {
+        const $parent = e.target.parentElement
+        let id = $parent.querySelector('.id').textContent
+        
+        localStorage.removeItem(id)
+        
+        $parent.remove()
+    }
+})
+
+    function display(fav) {
+        $favList.innerHTML += `
+        <li class="fav_element" id="fav_element">
+                <img id="resultImage" src= ${fav.url}>
+                     <div>
+                         <h4>${fav.title}</h4>
+                         <p class="date">${fav.date}</p>
+                         <button class="delete" id="delete">Delete</button>
+                     </div>
+             </li>`
+    }
+    
+    init() 
